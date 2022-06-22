@@ -1,4 +1,4 @@
-const api_key="c2f4c89b537808c194cac27dae3a091e";
+const api_key="d0ed2e128e406874811346153036a253";
 
 let generos = {}
 fetch(`https://api.themoviedb.org/3/genre/movie/list?language=pt-BR&api_key=${api_key}`)
