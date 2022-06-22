@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Cinematopia</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Ícones -->
+  <link href="assets/img/icons/filme.png" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- CSS-->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-cente">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+
+      <a href="index.html" class="logo me-auto me-lg-40"><img src="" alt="" class="img-fluid"></a>
+
+      <!-- .navbar -->
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="#events"></a></li>
+          <li><a class="nav-link scrollto" href="#specials"></a></li>
+          <li><a class="nav-link scrollto" href="#testimonials"></a></li>
+          <li><a class="nav-link scrollto" href="#gallery"></a></li>
+          <li><a class="nav-link scrollto" href="#news"></a></li>
+          <li><a class="nav-link scrollto" href="index.html">Página Inicial</a></li>
+        </ul> 
+      </nav>
+      <!-- Fim .navbar -->
+
+    </div>
+  </header><!-- Fim Header -->
+  
+  <main id="main">
+
+    <!-- ======= Destaques ======= -->
+    <section id="specials" class="specials">
+      <div class="container" data-aos="fade-up">
+        
+
+        <div class="section-title">
+          <h2>Detalhes</h2>
+        </div>
+
+        <div id="container_detalhes">
+    
+            
+
+        </div>
+
+        </div>
+
+      
+    </section>
+    <!-- Fim Destaques -->
+
+  </main>
+  <!-- Fim #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+          <div class="container">
+            <div class="copyright">
+          &copy; <strong><span><img src="assets/img/logo.png" alt="" class="img-fluid" width="180px" height="180px"></span></strong>. Desenvolvido por <b>Pâmella Almeida da Silva</b>.
+        </div>
+    </div>
+  </footer><!-- Fim Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script>
+
+    async function mostrarDetalhes() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const movieId = Number(urlParams.get('id'));
+      if(movieId === 0 || isNaN(movieId)) {
+        alert("Erro ao buscar o filme especificado");
+        location.href = 'index.html';
+        return;
+      }
+
+      let filme = null;
+      try {
+        filme = await buscarFilme(movieId);
+        if(!filme.title) {
+          throw new Error("filme invalido");
+        }
+      } catch (error) {
+        alert("Erro ao buscar o filme especificado");
+        location.href = 'index.html';
+        return;
+      }
+
+      const html = `
+          <div class="row">
+              <div class="col-lg-6 col-12">
+                  <img src="https://image.tmdb.org/t/p/w500/${filme.poster_path}" alt="" class="img-fluid" width="300px" height="300px">
+              </div>
+              <div class="col-lg-6 col-12">
+                  <h4>${filme.title}</h4>
+                  <p>${filme.overview}</p>
+                  <p><b>${filme.vote_average}⭐</b></p>
+                  <b>Gêneros: </b>${filme.genres.map(i => i.name).join(', ')}
+                  <br><br><a class="btn btn-outline-warning" href="https://www.themoviedb.org/movie/${filme.id}-${filme.title}" target="_blank">Leia mais</a></br></br>
+              </div>
+          </div>
+      `;
+
+        document.getElementById("container_detalhes").innerHTML = html;
+    }
+
+    mostrarDetalhes()
+
+
+  </script>
+
+</body>
+
+</html>
