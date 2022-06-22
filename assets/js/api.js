@@ -79,6 +79,7 @@ async function renderizarFilmes(termoBusca, destinoHtmlId, funcao='pesquisar') {
                     <h4>${filme.title}</h4>
                     <p>${String(filme.overview).substring(0, 250)}${String(filme.overview).length >  250 ? '...' : ''}</p>
                     <p><b>${filme.vote_average}⭐</b></p>
+                    <p><b>Data publicação:</b> ${filme.release_date.split('-').reverse().join('/')}</p>
                     ${generosHtml}
                 </a>
             </div>

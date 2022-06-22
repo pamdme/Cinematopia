@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ptbr">
 
 <head>
   <meta charset="utf-8">
@@ -59,7 +59,7 @@
           <h2>Sua utopia cinematográfica!</h2>
         </div>
         <div class="col-lg-6">
-          <br><form onsubmit="renderizarFilmes(document.getElementById('termo_busca').value, 'container_resultado_pesquisa'); return false;">
+    <br><form onsubmit="renderizarFilmes(document.getElementById('termo_busca').value, 'container_resultado_pesquisa'); document.getElementById('container_resultado_pesquisa').scrollIntoView(); return false;">
             <input type="text" placeholder="Pesquisar filme" name="search" id="termo_busca" required>
               <button type="submit"><i class="fa fa-search"></i></button>    
             </input>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ptbr">
 
 <head>
   <meta charset="utf-8">
@@ -137,6 +137,7 @@
                   <p>${filme.overview}</p>
                   <p><b>${filme.vote_average}⭐</b></p>
                   <b>Gêneros: </b>${filme.genres.map(i => i.name).join(', ')}
+                  <p><b>Data publicação:</b> ${filme.release_date.split('-').reverse().join('/')}</p>
                   <br><br><a class="btn btn-outline-warning" href="https://www.themoviedb.org/movie/${filme.id}-${filme.title}" target="_blank">Leia mais</a></br></br>
               </div>
           </div>
